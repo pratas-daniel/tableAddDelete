@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Tecnologias</title>
+	<script>
+		function addTecnologia() {
+		  var tecnologia = document.getElementById("tecnologia").value;
+		  var exp = document.getElementById("exp").value;
+		  var tabela = document.getElementById("tabela");
+
+		  if (tecnologia.length != 0 && exp.length != 0 && exp > 0) {
+			var row = tabela.insertRow(1);
+
+			var cell1 = row.insertCell(0);
+			cell1.innerHTML = tecnologia;
+
+			var cell2 = row.insertCell(1);
+			cell2.innerHTML = exp;
+
+			var cell3 = row.insertCell(2);
+			cell3.innerHTML = '<input type="button" id="delete" value="Delete" onclick="deleteRow(this)">';
+
+		  } else if (tecnologia.length == 0) {
+			alert("O campo tecnologia está vazio");
+
+		  } else if (exp.length == 0) {
+			alert("O campo experiência está vazio!");
+
+		  } else if (exp <= 0) {
+			alert("O número introduzido no campo experiência é inválido!");
+
+		  }
+		}
+		function deleteRow(row) {
+		  var num = row.parentNode.parentNode.rowIndex;
+		  document.getElementById("tabela").deleteRow(num);
+		}
+	</script>
+  </head>
+  <body>
+    <header>
+		Tecnologia: <input type="text" id="tecnologia">
+		&emsp;Experiência: <input type="number" id="exp">
+		&emsp;<input type="button" value="Adicionar" onclick="addTecnologia()">
+	</header>
+	<main>
+		<table id="tabela">
+			<tr>
+				<th>Tecnologia</th>
+				<th>Experiência</th>
+				<th>Apagar</th>
+			</tr>
+		</table>
+	</main>
+  </body>
+</html>
