@@ -6,32 +6,36 @@
     <title>Tecnologias</title>
 	<script>
 		function addTecnologia() {
-		  var tecnologia = document.getElementById("tecnologia").value;
-		  var exp = document.getElementById("exp").value;
+		  var tecnologia = document.getElementById("tecnologia");
+		  var exp = document.getElementById("exp");
 		  var tabela = document.getElementById("tabela");
 
-		  if (tecnologia.length != 0 && exp.length != 0 && exp > 0) {
+		  if (tecnologia.value.length != 0 && exp.value.length != 0 && exp.value > 0) {
 			var row = tabela.insertRow(1);
 
 			var cell1 = row.insertCell(0);
-			cell1.innerHTML = tecnologia;
+			cell1.innerHTML = tecnologia.value;
 
 			var cell2 = row.insertCell(1);
-			cell2.innerHTML = exp;
+			cell2.innerHTML = exp.value + " mes(es)";
 
 			var cell3 = row.insertCell(2);
 			cell3.innerHTML = '<input type="button" id="delete" value="Delete" onclick="deleteRow(this)">';
 
-		  } else if (tecnologia.length == 0) {
+		  } else if (tecnologia.value.length == 0) {
 			alert("O campo tecnologia está vazio");
 
-		  } else if (exp.length == 0) {
+		  } else if (exp.value.length == 0) {
 			alert("O campo experiência está vazio!");
 
-		  } else if (exp <= 0) {
+		  } else if (exp.value <= 0) {
 			alert("O número introduzido no campo experiência é inválido!");
 
 		  }
+
+      tecnologia.value = "";
+      exp.value = "";
+
 		}
 		function deleteRow(row) {
 		  var num = row.parentNode.parentNode.rowIndex;
@@ -41,9 +45,9 @@
   </head>
   <body>
     <header>
-		Tecnologia: <input type="text" id="tecnologia">
-		&emsp;Experiência: <input type="number" id="exp">
-		&emsp;<input type="button" value="Adicionar" onclick="addTecnologia()">
+		Tecnologia: <input type="text" id="tecnologia"><span>&emsp;</span>
+    Experiência(meses): <input type="number" id="exp"><span>&emsp;</span>
+		<input type="button" value="Adicionar" onclick="addTecnologia()">
 	</header>
 	<main>
 		<table id="tabela">
