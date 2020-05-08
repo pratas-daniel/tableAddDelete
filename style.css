@@ -34,7 +34,13 @@ td {
   font-size: 150%;
 }
 
+span {
+  color: red;
+  font-size: 120%;
+}
+
 @media only screen and (max-width: 1000px) {
+
   span {
     display: block;
   }

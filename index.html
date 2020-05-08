@@ -37,17 +37,37 @@
       exp.value = "";
 
 		}
+
 		function deleteRow(row) {
 		  var num = row.parentNode.parentNode.rowIndex;
 		  document.getElementById("tabela").deleteRow(num);
 		}
+
+    function checkTecnologia() {
+      var text = document.getElementById("tecnologia").value;
+      var tabela = document.getElementById("tabela");
+      var warning = document.getElementById("warning");
+      var button = document.getElementById("add");
+      var i;
+
+      for (i = 1; i < tabela.rows.length; i++){
+        if (text === tabela.rows[i].cells[0].innerHTML) {
+          warning.innerHTML = "Essa tecnologia já foi adicionada";
+          button.disabled = true;
+        } else {
+          warning.innerHTML = "";
+          button.disabled = false;
+        }
+      }
+    }
 	</script>
   </head>
   <body>
     <header>
-		Tecnologia: <input type="text" id="tecnologia"><span>&emsp;</span>
+		Tecnologia: <input type="text" id="tecnologia" oninput="checkTecnologia()"><span>&emsp;</span>
     Experiência(meses): <input type="number" id="exp"><span>&emsp;</span>
-		<input type="button" value="Adicionar" onclick="addTecnologia()">
+		<input type="button" id="add" value="Adicionar" onclick="addTecnologia()">
+    <br><br><span id="warning"></span>
 	</header>
 	<main>
 		<table id="tabela">
